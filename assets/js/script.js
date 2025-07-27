@@ -1,29 +1,32 @@
-// Espera até que o HTML esteja totalmente carregado
-document.addEventListener("DOMContentLoaded", () => {
-  const amountInput = document.getElementById("amount");     // Caixa de entrada
-  const converterInput = document.getElementById("converter"); // Caixa de saída
 
-  // Escuta qualquer mudança no campo "amount"
+document.addEventListener("DOMContentLoaded", () => {
+  const amountInput = document.getElementById("amount");     
+  const converterInput = document.getElementById("converter"); 
+
+
+  // Conversion
+
   amountInput.addEventListener("input", () => {
-    const valor = parseFloat(amountInput.value); // Converte para número
+    const valor = parseFloat(amountInput.value); 
 
     if (!isNaN(valor)) {
-      converterInput.value = valor + 1; // Mostra o valor + 1
+      converterInput.value = valor ; 
     } else {
-      converterInput.value = ""; // Se não for número, limpa a saída
+      converterInput.value = ""; 
     }
   });
 });
 const exchangeRateText = document.getElementById('exchange-rate');
 
-// Função para buscar o valor do dólar em tempo real
+// get the real value of the dollar
 async function getDollarRate() {
   try {
     const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL');
     const data = await response.json();
     const rate = parseFloat(data.USDBRL.bid).toFixed(2);
 
-    // Atualiza o texto no HTML
+
+    // Att HTML
     exchangeRateText.textContent = `Taxa de câmbio comercial: $1 USD = R$ ${rate}`;
   } catch (error) {
     exchangeRateText.textContent = 'Erro ao carregar a taxa de câmbio.';
@@ -31,12 +34,12 @@ async function getDollarRate() {
   }
 }
 
-// Chama a função ao carregar a página
+
 getDollarRate();
 
-let isOriginalOrder = true; // true = BRL → USD, false = USD → BRL
+let isOriginalOrder = true; 
 
-// Elementos
+// Elements
 const amountInput = document.getElementById('amount');
 const outputInput = document.getElementById('converter');
 const amountLabel = document.getElementById('amount-label');
@@ -44,10 +47,11 @@ const converterLabel = document.getElementById('converter-label');
 const leftFlag = document.getElementById('left-flag');
 const rightFlag = document.getElementById('right-flag');
 
-// Atualiza a conversão em tempo real ao digitar
+
 amountInput.addEventListener('input', converter);
 
-// Botão de troca
+
+// change button
 document.getElementById('swap').addEventListener('click', () => {
   isOriginalOrder = !isOriginalOrder;
 
@@ -57,17 +61,17 @@ document.getElementById('swap').addEventListener('click', () => {
     rightFlag.src = 'assets/img/United-states_flag_icon_round.svg (1).png';
     rightFlag.alt = 'Bandeira dos Estados Unidos';
     amountLabel.textContent = 'Quantia em BRL:';
-    converterLabel.textContent = 'Valor convertido:';
+
   } else {
     leftFlag.src = 'assets/img/United-states_flag_icon_round.svg (1).png';
     leftFlag.alt = 'Bandeira dos Estados Unidos';
     rightFlag.src = 'assets/img/Brazilian_flag_icon_round.svg.png';
     rightFlag.alt = 'Bandeira do Brasil';
     amountLabel.textContent = 'Quantia em USD:';
-    converterLabel.textContent = 'Valor convertido:';
+  
   }
 
-  converter(); // Recalcula após troca
+  converter(); 
 });
 
 async function converter() {
@@ -94,3 +98,14 @@ async function converter() {
     console.error('Erro ao buscar taxa de câmbio:', error);
   }
 }
+
+//returnbutton
+const butto = document.getElementById('return');
+  
+butto.addEventListener('click', () => {
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
+
+});
