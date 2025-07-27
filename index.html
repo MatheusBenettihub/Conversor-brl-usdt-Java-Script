@@ -4,97 +4,89 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conversor Dólar/Real</title>
-  <link
-  href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-  rel="stylesheet"
-/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
   <!-- Seção superior dividida em duas metades -->
   <section class="first-section primary-bg">
-
     <!-- Metade esquerda -->
     <div class="left-half">
       <div class="content-left">
         <div class="coin-converter section">
           <div>
-            <h1>Conversor <br>  Dolar/Real</h1>
-            <h2>Taxa de câmbio comercial -> $1 USD = 5,579 BRL</h2>
+            <h1>Conversor <br> Dólar/Real</h1>
+            <h2 id="exchange-rate">Taxa de câmbio comercial: carregando...</h2>
           </div>
 
-        <div class="form-wrapper">
-          <div class="form-box ">
-            <label for="amount">Quantia:</label>
+          <div class="form-wrapper">
+            <div class="form-box">
+              <label for="amount" id="amount-label">Quantia:</label>
               <div class="input-with-flag">
-
-                <!-- entrada -->
                 <input type="text" id="amount" class="amount box" placeholder="Digite a quantia" />
-
-                <img src="assets/img/Brazilian_flag_icon_round.svg.png" alt="Bandeira do Brasil"width="32" height="32">
+                <img id="left-flag" src="assets/img/Brazilian_flag_icon_round.svg.png" alt="Bandeira do Brasil" width="32" height="32">
               </div>
-          </div>
-          <div class="swap-icon">
-             <img src="assets/img/swap-vertical.png" alt="simbolo de troca de unidade" width="40" height="40">
-          </div>
-          <a href="#about" class="question-icon" aria-label="ajuda">
-            <img src="https://img.icons8.com/material-outlined/24/FAB005/help.png" alt="help" width="24" height="24"/>
-          </a>
-          <div class="form-box">
+            </div>
 
-            <!-- saida -->
-            <label for="converter">Valor convertido:</label>
+            <!-- Ícone de troca -->
+            <div class="swap-icon" id="swap">
+              <img src="assets/img/swap-vertical.png" alt="Trocar moedas" width="40" height="40">
+            </div>
+
+            <a href="#about" class="question-icon" aria-label="ajuda">
+              <img src="https://img.icons8.com/material-outlined/24/FAB005/help.png" alt="help" width="24" height="24"/>
+            </a>
+
+            <div class="form-box">
+              <label for="converter" id="converter-label">Valor convertido:</label>
               <div class="input-with-flag">
-                <input type="text" id="converter" class="converter box" readonly>
-
-
-
-                <img src="assets/img/United-states_flag_icon_round.svg (1).png" alt="Bandeira dos Estados Unidos" width="32" height="32">
+                <input type="text" id="converter" class="converter box" readonly />
+                <img id="right-flag" src="assets/img/United-states_flag_icon_round.svg (1).png" alt="Bandeira dos Estados Unidos" width="32" height="32">
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-</div>
+
     <!-- Metade direita com iframe do TradingView -->
     <div class="right-half">
       <div class="content-right">
         <iframe
-        src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_12345&symbol=FX_IDC%3AUSDBRL&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=F1F3F6&studies=[]&hideideas=1&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&range=1D&&hidelegend=1&enablepublishing=false&allow_symbol_change=false&hide_top_toolbar=true"
-        width="120%" height="550" frameborder="2" allowtransparency="true" scrolling="no"
+          src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_12345&symbol=FX_IDC%3AUSDBRL&interval=1&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=F1F3F6&studies=[]&hideideas=1&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&range=1D&&hidelegend=1&enablepublishing=false&allow_symbol_change=false&hide_top_toolbar=true"
+          width="120%" height="550" frameborder="2" allowtransparency="true" scrolling="no"
         ></iframe>
         <div class="doubt">
           <a href="#about">
             <h2>Dúvida?</h2>
           </a>
         </div>
-
       </div>
     </div>
-
   </section>
 
   <!-- Seção About the site -->
   <section id="about" class="secundary-bg">
-    <div class="about secound-section" >
-      <h2>Como funciona a conversão?</h2>
-      <h3>
-          No campo à esquerda, você insere o valor em Reais (BRL) que deseja converter. 
-      O sistema usa a cotação atualizada para calcular quanto isso representa em Dólar (USDT). 
-      O botão de troca entre as bandeiras permite inverter a direção da conversão.
-      </h3>
-      <h2>Como funciona esse gráfico?</h2>
-      <h3>  O gráfico exibido no lado direito da tela mostra em tempo real a cotação do par BRL/USDT — ou seja, quantos Reais valem 1 Dólar digital. 
-  Ele é interativo: você pode mover o gráfico para os lados, aplicar zoom com o scroll do mouse e escolher diferentes períodos de tempo (como 1 dia, 1 semana ou 1 ano).<br><br>
-    Além disso, é possível acompanhar o volume de negociações, identificar tendências e tomar decisões com base na análise visual. 
-  Isso é especialmente útil para quem quer entender o comportamento da cotação ao longo do tempo ou encontrar o melhor momento para fazer a conversão.</h3>
-    
+  <div class="about secound-section">
+    <h2>Como funciona a conversão?</h2>
+    <h3>
+      Ao digitar um valor na moeda de origem (BRL ou USD), o sistema faz automaticamente a conversão com base na cotação atual. A bandeira e a legenda indicam a moeda usada. O botão central permite trocar entre real e dólar.
+    </h3>
+
+    <h2>Como funciona esse gráfico?</h2>
+    <h3>
+    O gráfico exibido no lado direito da tela permite acompanhar as oscilações do dólar ao longo do tempo, ajudando na tomada de decisão sobre o momento mais adequado para realizar uma conversão. Com ele, você pode analisar a tendência do mercado, identificar períodos de alta ou baixa e entender o comportamento da moeda em diferentes contextos econômicos. Além disso, a visualização do gráfico é interativa, permitindo ajustar o período de análise e explorar os dados com mais profundidade.
+</h3>
+
     <div class="two-flags-container">
-    <img src="assets/img/2bdff6_acd8081f202c4614a97a8ab86fc6d8f4mv2.png" alt="bandeira Brasil e Eua" width="80" height="80" class="two-flags">
+      <img src="assets/img/2bdff6_acd8081f202c4614a97a8ab86fc6d8f4mv2.png" alt="bandeira Brasil e EUA" width="80" height="80" class="two-flags">
     </div>
- 
-  </section>
-   <script src="assets/js/script.js"> </script>
+  </div>
+</section>
+
+
+  <!-- JavaScript -->
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
